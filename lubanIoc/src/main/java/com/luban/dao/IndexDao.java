@@ -25,5 +25,7 @@ public class IndexDao implements Dao, Serializable {
 
 	}
 
-
+	public IndexDao() {
+		System.out.println(" indexDao init");
+	}
 }
