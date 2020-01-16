@@ -1,4 +1,4 @@
-package com.luban.imports;
+package com.luban.test;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -19,6 +19,7 @@ public class MyInvocationHandler implements InvocationHandler {
 
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+		System.out.println("我是代理。。。。。");
 		return method.invoke(object,args);
 	}
 }

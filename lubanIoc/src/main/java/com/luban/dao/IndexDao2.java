@@ -18,7 +18,6 @@ public class IndexDao2 extends AbstractAutoProxyCreator {
 	@Override
 	protected Object[] getAdvicesAndAdvisorsForBean(Class<?> beanClass, String beanName, TargetSource customTargetSource) throws BeansException {
 
-
 		return new Object[0];
 	}
 }

@@ -1,14 +1,13 @@
 package com.luban.dao;
 
-import com.luban.imports.MyInvocationHandler;
+import com.luban.test.MyInvocationHandler;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Proxy;
 
 
-public class ProxyIndexDao3 implements BeanPostProcessor {
+public class IndexDao3 implements BeanPostProcessor {
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		//返回代理对象  Aop是实现AbstractAutoProxyCreator

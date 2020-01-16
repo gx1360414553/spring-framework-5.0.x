@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.io.Serializable;
 
 @Component
-public class IndexDao implements Dao, Serializable, FactoryBean {
+public class IndexDao implements Dao, Serializable {
 
 
 	/**
@@ -26,13 +26,4 @@ public class IndexDao implements Dao, Serializable, FactoryBean {
 	}
 
 
-	@Override
-	public Object getObject() throws Exception {
-		return new IndexDao1();
-	}
-
-	@Override
-	public Class<?> getObjectType() {
-		return null;
-	}
 }

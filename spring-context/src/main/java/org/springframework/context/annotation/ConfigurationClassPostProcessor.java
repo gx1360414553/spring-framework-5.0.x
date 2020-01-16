@@ -277,7 +277,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 			BeanDefinition beanDef = registry.getBeanDefinition(beanName);
 			if (ConfigurationClassUtils.isFullConfigurationClass(beanDef) ||
 					ConfigurationClassUtils.isLiteConfigurationClass(beanDef)) {
-				//果BeanDefinition中的configurationClass属性为full或者lite,则意味着已经处理过了,直接跳过
+				//如果BeanDefinition中的configurationClass属性为full或者lite,则意味着已经处理过了,直接跳过
 				//这里需要结合下面的代码才能理解
 				if (logger.isDebugEnabled()) {
 					logger.debug("Bean definition has already been processed as a configuration class: " + beanDef);
@@ -342,6 +342,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		Set<BeanDefinitionHolder> candidates = new LinkedHashSet<>(configCandidates);
 		Set<ConfigurationClass> alreadyParsed = new HashSet<>(configCandidates.size());
 		do {
+			//扫描包
 			parser.parse(candidates);
 			parser.validate();
 			//map.keyset

@@ -1,7 +1,10 @@
 package com.luban.test;
 
 import com.luban.app.Appconfig;
+import com.luban.dao.Dao;
+import com.luban.dao.IndexDao;
 import com.luban.dao.IndexDao1;
+import com.luban.dao.IndexDao3;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -15,9 +18,12 @@ public class Test {
 	public static void main(String[] args) {
 //		ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("classpath:xxx.xml");
 		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(Appconfig.class);
-		IndexDao1 indexDao1 = (IndexDao1) annotationConfigApplicationContext.getBean("indexDao1");
+		//添加自定义的BeanFactoryPostProcessor
+//		annotationConfigApplicationContext.addBeanFactoryPostProcessor(xxxxxBeanFactoryPostProcessor);下面的也可以
+//		annotationConfigApplicationContext.getBeanFactoryPostProcessors().add(xxxxxBeanFactoryPostProcessor);
+		Dao dao = (Dao) annotationConfigApplicationContext.getBean("indexDao");
 
-		indexDao1.query();
+		dao.query();
 
 	}
 }
