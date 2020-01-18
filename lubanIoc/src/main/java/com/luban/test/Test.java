@@ -19,13 +19,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Test {
 	public static void main(String[] args) {
 //		ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("classpath:xxx.xml");
-//		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(Appconfig.class);
+		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(Appconfig.class);
 		//添加自定义的BeanFactoryPostProcessor
 //		annotationConfigApplicationContext.addBeanFactoryPostProcessor(xxxxxBeanFactoryPostProcessor);下面的也可以
 //		annotationConfigApplicationContext.getBeanFactoryPostProcessors().add(xxxxxBeanFactoryPostProcessor);
-//		Dao dao = (Dao) annotationConfigApplicationContext.getBean("indexDao");
+		Dao dao = (Dao) annotationConfigApplicationContext.getBean("indexDao");
 
-//		dao.query();
+		dao.query();
 
 		System.out.println("---------------------");
 
