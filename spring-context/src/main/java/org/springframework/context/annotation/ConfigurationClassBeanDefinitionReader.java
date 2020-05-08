@@ -136,7 +136,7 @@ class ConfigurationClassBeanDefinitionReader {
 		}
 
 		//如果一个类是被import的，会被spring标计
-		//早这里完成注册
+		//在这里完成注册
 		if (configClass.isImported()) {
 			registerBeanDefinitionForImportedConfigurationClass(configClass);
 		}
@@ -219,7 +219,7 @@ class ConfigurationClassBeanDefinitionReader {
 		beanDef.setSource(this.sourceExtractor.extractSource(metadata, configClass.getResource()));
 
 		if (metadata.isStatic()) {
-			// static @Bean method
+			// static @Bean method    是prototype的
 			beanDef.setBeanClassName(configClass.getMetadata().getClassName());
 			beanDef.setFactoryMethodName(methodName);
 		}

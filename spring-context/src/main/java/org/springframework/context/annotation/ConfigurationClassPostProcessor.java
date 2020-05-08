@@ -270,8 +270,9 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		String[] candidateNames = registry.getBeanDefinitionNames();
 
 		/**
-		 * Full
-		 * Lite
+		 * 为什么设置Full、Lite
+		 * 见ConfigurationClassPostProcessor#enhanceConfigurationClasses(org.springframework.beans.factory.config.ConfigurableListableBeanFactory)
+		 *
 		 */
 		for (String beanName : candidateNames) {
 			BeanDefinition beanDef = registry.getBeanDefinition(beanName);

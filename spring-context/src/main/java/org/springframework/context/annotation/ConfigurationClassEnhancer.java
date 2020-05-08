@@ -99,7 +99,7 @@ class ConfigurationClassEnhancer {
 	 * @return the enhanced subclass
 	 */
 	public Class<?> enhance(Class<?> configClass, @Nullable ClassLoader classLoader) {
-		//判断是否被代理过
+		//判断是否被代理过  是否实现EnhancedConfiguration接口
 		if (EnhancedConfiguration.class.isAssignableFrom(configClass)) {
 			if (logger.isDebugEnabled()) {
 				logger.debug(String.format("Ignoring request to enhance %s as it has " +
@@ -387,7 +387,7 @@ class ConfigurationClassEnhancer {
 				}
 				return cglibMethodProxy.invokeSuper(enhancedConfigInstance, beanMethodArgs);
 			}
-
+				//从容器获取bean
 			return resolveBeanReference(beanMethod, beanMethodArgs, beanFactory, beanName);
 		}
 
@@ -564,7 +564,7 @@ class ConfigurationClassEnhancer {
 
 		private Object createCglibProxyForFactoryBean(final Object factoryBean,
 				final ConfigurableBeanFactory beanFactory, final String beanName) {
-
+			//为FactoryBean创建代理对象
 			Enhancer enhancer = new Enhancer();
 			enhancer.setSuperclass(factoryBean.getClass());
 			enhancer.setNamingPolicy(SpringNamingPolicy.INSTANCE);

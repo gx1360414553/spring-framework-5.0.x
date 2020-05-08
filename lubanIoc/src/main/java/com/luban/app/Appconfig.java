@@ -7,7 +7,7 @@ import com.luban.dao.IndexDao1;
 import org.springframework.context.annotation.*;
 @ComponentScan({"com.luban"})
 @Configuration
-@EanbleLuabn
+@EanbleLuabn // 集成AOP插件
 public class Appconfig {
 
 	@Bean

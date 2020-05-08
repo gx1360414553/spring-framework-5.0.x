@@ -1,10 +1,8 @@
 package com.luban.test;
 
 import com.luban.app.Appconfig;
-import com.luban.dao.Dao;
-import com.luban.dao.IndexDao;
-import com.luban.dao.IndexDao1;
-import com.luban.dao.IndexDao3;
+import com.luban.dao.*;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cglib.core.SpringNamingPolicy;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -19,7 +17,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Test {
 	public static void main(String[] args) {
 //		ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("classpath:xxx.xml");
-		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(Appconfig.class);
+		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
+		annotationConfigApplicationContext.register(Appconfig.class);
+		annotationConfigApplicationContext.addBeanFactoryPostProcessor(new IndexDao4());
+		annotationConfigApplicationContext.addBeanFactoryPostProcessor(new IndexDao5());
+		annotationConfigApplicationContext.refresh();
 		//添加自定义的BeanFactoryPostProcessor
 //		annotationConfigApplicationContext.addBeanFactoryPostProcessor(xxxxxBeanFactoryPostProcessor);下面的也可以
 //		annotationConfigApplicationContext.getBeanFactoryPostProcessors().add(xxxxxBeanFactoryPostProcessor);

@@ -49,7 +49,7 @@ import org.springframework.lang.Nullable;
  *  5、AutowiredAnnotationBeanPostProcessor
  *  6 、RequiredAnnotationBeanPostProcessor
  *  7、BeanValidationPostProcessor
- *  8、AbstractAutoProxyCreator
+ *  8、AbstractAutoProxyCreator 实现aop代理的后置处理器
  *  ......
  *  后面会一一解释
  *
