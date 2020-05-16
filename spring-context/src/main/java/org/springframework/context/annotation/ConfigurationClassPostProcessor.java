@@ -255,6 +255,7 @@ public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPo
 		//给配置类产生cglib代理
 		//为什么需要产生cglib代理？
 		enhanceConfigurationClasses(beanFactory);
+		//添加了一个beanPostProcessor
 		beanFactory.addBeanPostProcessor(new ImportAwareBeanPostProcessor(beanFactory));
 	}
 

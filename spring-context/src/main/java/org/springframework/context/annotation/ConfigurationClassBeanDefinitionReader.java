@@ -145,10 +145,10 @@ class ConfigurationClassBeanDefinitionReader {
 			loadBeanDefinitionsForBeanMethod(beanMethod);
 		}
 
-		 //xml
+		 //执行xml
 		loadBeanDefinitionsFromImportedResources(configClass.getImportedResources());
 
-		//注册Registrar
+		//执行registerBeanDefinitions
 		loadBeanDefinitionsFromRegistrars(configClass.getImportBeanDefinitionRegistrars());
 	}
 

@@ -267,7 +267,7 @@ class ConstructorResolver {
 						 * 这个方法比较复杂
 						 * 因为spring只能提供字符串的参数值
 						 * 故而需要进行转换
-						 * argsHolder所包含的值就是转换之后的
+						 * argsHolder所包含的值就是转换之后的 可以把包名转换成class类
 						 */
 						argsHolder = createArgumentArray(beanName, mbd, resolvedValues, bw, paramTypes, paramNames,
 								getUserDeclaredConstructor(candidate), autowiring);

@@ -19,8 +19,8 @@ public class Test {
 //		ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("classpath:xxx.xml");
 		AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext();
 		annotationConfigApplicationContext.register(Appconfig.class);
-		annotationConfigApplicationContext.addBeanFactoryPostProcessor(new IndexDao4());
-		annotationConfigApplicationContext.addBeanFactoryPostProcessor(new IndexDao5());
+//		annotationConfigApplicationContext.addBeanFactoryPostProcessor(new IndexDao4());
+//		annotationConfigApplicationContext.addBeanFactoryPostProcessor(new IndexDao5());
 		annotationConfigApplicationContext.refresh();
 		//添加自定义的BeanFactoryPostProcessor
 //		annotationConfigApplicationContext.addBeanFactoryPostProcessor(xxxxxBeanFactoryPostProcessor);下面的也可以
@@ -31,13 +31,13 @@ public class Test {
 
 		System.out.println("---------------------");
 
-		Enhancer enhancer = new Enhancer();
-		//增强父类，地球人都知道cglib是基于继承来的
-		enhancer.setSuperclass(IndexDao.class);
-		enhancer.setNamingPolicy(SpringNamingPolicy.INSTANCE);
-
-		enhancer.setCallback(new TestMethodCallback());
-		IndexDao indexDao = (IndexDao) enhancer.create();
-		indexDao.query();
+//		Enhancer enhancer = new Enhancer();
+//		//增强父类，地球人都知道cglib是基于继承来的
+//		enhancer.setSuperclass(IndexDao.class);
+//		enhancer.setNamingPolicy(SpringNamingPolicy.INSTANCE);
+//
+//		enhancer.setCallback(new TestMethodCallback());
+//		IndexDao indexDao = (IndexDao) enhancer.create();
+//		indexDao.query();
 	}
 }
