@@ -1128,7 +1128,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		 * 从spring的原始注释可以知道这个是一个Shortcut，什么意思呢？
 		 * 当多次构建同一个 bean 时，可以使用这个Shortcut，
 		 * 也就是说不在需要次推断应该使用哪种方式构造bean
-		 *  比如在多次构建同一个prototype类型的 bean 时，就可以走此处的hortcut
+		 *  比如在多次构建同一个prototype类型的 bean 时，就可以走此处的shortcut
 		 * 这里的 resolved 和 mbd.constructorArgumentsResolved 将会在 bean 第一次实例
 		 * 化的过程中被设置，后面来证明
 		 */
