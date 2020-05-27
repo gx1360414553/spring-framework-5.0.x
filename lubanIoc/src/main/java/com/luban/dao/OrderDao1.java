@@ -10,10 +10,8 @@ import org.springframework.stereotype.Component;
  * @createTime 2020年05月16日 14:57:00
  */
 @Component
-public class OrderDao implements Order{
+public class OrderDao1 implements Order{
 
-//	@Autowired
-//	private IndexDao1 indexDao1;
 
 	public void query(){
 		System.out.println("OrderDao..........");
