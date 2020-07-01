@@ -28,6 +28,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -406,6 +407,7 @@ public class DispatcherServlet extends FrameworkServlet {
 	 * @see org.springframework.web.WebApplicationInitializer
 	 */
 	public DispatcherServlet(WebApplicationContext webApplicationContext) {
+		//构造方法可以传一个spring的AnnotationConfigWebApplicationContext进来初始化servlet
 		super(webApplicationContext);
 		setDispatchOptionsRequest(true);
 	}
@@ -882,6 +884,11 @@ public class DispatcherServlet extends FrameworkServlet {
 		return context.getAutowireCapableBeanFactory().createBean(clazz);
 	}
 
+
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+	}
 
 	/**
 	 * Exposes the DispatcherServlet-specific request attributes and delegates to {@link #doDispatch}

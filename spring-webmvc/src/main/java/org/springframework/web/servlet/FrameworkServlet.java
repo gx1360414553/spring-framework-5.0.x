@@ -552,6 +552,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		}
 		if (wac == null) {
 			// No context instance is defined for this servlet -> create a local one
+			//创建了WebApplicationContext
 			wac = createWebApplicationContext(rootContext);
 		}
 
@@ -637,6 +638,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 		if (configLocation != null) {
 			wac.setConfigLocation(configLocation);
 		}
+		//配置和刷新了spring容器
 		configureAndRefreshWebApplicationContext(wac);
 
 		return wac;
@@ -671,7 +673,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 
 		postProcessWebApplicationContext(wac);
 		applyInitializers(wac);
-		wac.refresh();
+		wac.refresh(); //再次调用了spring容器的refresh方法
 	}
 
 	/**
