@@ -979,7 +979,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				// Determine handler adapter for the current request.
-				//mappedHandler是bean时返回对象（待证明）  方法时返回方法
+				//mappedHandler是bean时返回对象（待证明）  方法时返回方法     主要完成参数解析
 				HandlerAdapter ha = getHandlerAdapter(mappedHandler.getHandler());//适配器
 				//确定怎么调用反射
 				// Process last-modified header, if supported by the handler.

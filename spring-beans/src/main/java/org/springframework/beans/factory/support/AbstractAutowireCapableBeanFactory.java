@@ -415,7 +415,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		Object result = existingBean;
 		for (BeanPostProcessor processor : getBeanPostProcessors()) {
-			Object current = processor.postProcessBeforeInitialization(result, beanName);
+			Object current = processor.postProcessBeforeInitialization(result, beanName);//ApplicationContextAwareProcessor
 			if (current == null) {
 				return result;
 			}
@@ -632,6 +632,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 
 		// Register bean as disposable.
 		try {
+			//DisposableBean
 			registerDisposableBeanIfNecessary(beanName, bean, mbd);
 		}
 		catch (BeanDefinitionValidationException ex) {
@@ -1367,7 +1368,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			}
 			// Add property values based on autowire by type if applicable.
 			if (mbd.getResolvedAutowireMode() == AUTOWIRE_BY_TYPE) {
-				autowireByType(beanName, mbd, bw, newPvs);
+				autowireByType(beanName, mbd, bw, newPvs);//通过判断是否是read或者write方法设置属性
 			}
 			pvs = newPvs;
 		}
@@ -1454,7 +1455,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		Set<String> autowiredBeanNames = new LinkedHashSet<>(4);
-		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);
+		String[] propertyNames = unsatisfiedNonSimpleProperties(mbd, bw);//判断是不是read或者write方法
 		for (String propertyName : propertyNames) {
 			try {
 				PropertyDescriptor pd = bw.getPropertyDescriptor(propertyName);
@@ -1808,7 +1809,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				}
 			}
 			else {
-				((InitializingBean) bean).afterPropertiesSet();
+				((InitializingBean) bean).afterPropertiesSet();//执行afterPropertiesSet方法
 			}
 		}
 		//处理 @Bean(initMethod = "initMethod")
