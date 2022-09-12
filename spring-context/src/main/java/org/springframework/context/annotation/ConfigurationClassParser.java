@@ -249,9 +249,9 @@ class ConfigurationClassParser {
 		// Recursively process the configuration class and its superclass hierarchy.
 		SourceClass sourceClass = asSourceClass(configClass);
 		do {
-			sourceClass = doProcessConfigurationClass(configClass, sourceClass);
+			sourceClass = doProcessConfigurationClass(configClass, sourceClass);//返回父类
 		}
-		while (sourceClass != null);
+		while (sourceClass != null);//父类不为null继续解析
 		//一个map，用来存放扫描出来的bean（注意这里的bean不是对象，仅仅bean的信息，因为还没到实例化这一步）
 		this.configurationClasses.put(configClass, configClass);
 	}
@@ -654,7 +654,7 @@ class ConfigurationClassParser {
 							String[] importClassNames = selector.selectImports(currentSourceClass.getMetadata());
 							Collection<SourceClass> importSourceClasses = asSourceClasses(importClassNames);
 							//递归，这里第二次调用processImports
-							//如果是一个普通类，会斤else
+							//如果是一个普通类，会进else
 							processImports(configClass, currentSourceClass, importSourceClasses, false);
 						}
 					}

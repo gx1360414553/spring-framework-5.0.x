@@ -7,6 +7,7 @@ import com.luban.dao.IndexDao1;
 import org.springframework.context.annotation.*;
 @ComponentScan({"com.luban"})
 @Configuration
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 //@EanbleLuabn // 集成AOP插件
 public class Appconfig {
 

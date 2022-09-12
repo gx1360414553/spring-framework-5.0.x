@@ -114,7 +114,7 @@ final class PostProcessorRegistrationDelegate {
 			//这个list只是一个临时变量，故而要清除
 			currentRegistryProcessors.clear();
 
-			// Next, invoke the BeanDefinitionRegistryPostProcessors that implement Ordered.
+			// Next, invoke the BeanDefinitionRegistryPostProcessors that implement Ordered.  处理用户自定的BeanDefinitionRegistryPostProcessor
 			postProcessorNames = beanFactory.getBeanNamesForType(BeanDefinitionRegistryPostProcessor.class, true, false);
 			for (String ppName : postProcessorNames) {
 				if (!processedBeans.contains(ppName) && beanFactory.isTypeMatch(ppName, Ordered.class)) {
@@ -150,7 +150,7 @@ final class PostProcessorRegistrationDelegate {
 			//前面执行的BeanFactoryPostProcessor的子类BeanDefinitionRegistryPostProcessor的回调
 			//这是执行的是BeanFactoryPostProcessor    postProcessBeanFactory
 			//ConfuguratuonClassPpostProcssor 对全注解类进行了代理
-			invokeBeanFactoryPostProcessors(registryProcessors, beanFactory);
+			invokeBeanFactoryPostProcessors(registryProcessors, beanFactory); //ConfigurationClassPostProcessor.postProcessBeanFactory
 			//自定义BeanFactoryPostProcessor
 			invokeBeanFactoryPostProcessors(regularPostProcessors, beanFactory);
 		}

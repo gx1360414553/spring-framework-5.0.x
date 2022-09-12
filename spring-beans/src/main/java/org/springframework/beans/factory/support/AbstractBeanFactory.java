@@ -304,7 +304,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 			// We're assumably within a circular reference.
 			/**
 			 * 原型
-			 * 如果是原型不应该在初始化的时候创建
+			 * 原型循环依赖报错
 			 */
 			if (isPrototypeCurrentlyInCreation(beanName)) {
 				throw new BeanCurrentlyInCreationException(beanName);
@@ -371,7 +371,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 							throw ex;
 						}
 					});
-					bean = getObjectForBeanInstance(sharedInstance, name, beanName, mbd);
+					bean = getObjectForBeanInstance(sharedInstance, name, beanName, mbd);//Factorybean调用getObject AbstractAutowireCapableBeanFactory.getObjectForBeanInstance
 				}
 
 				else if (mbd.isPrototype()) {
@@ -1688,7 +1688,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 				mbd = getMergedLocalBeanDefinition(beanName);
 			}
 			boolean synthetic = (mbd != null && mbd.isSynthetic());
-			object = getObjectFromFactoryBean(factory, beanName, !synthetic);
+			object = getObjectFromFactoryBean(factory, beanName, !synthetic);//调用getObject
 		}
 		return object;
 	}

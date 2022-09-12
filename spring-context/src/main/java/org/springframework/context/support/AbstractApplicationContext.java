@@ -551,7 +551,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				initApplicationEventMulticaster();
 
 				// Initialize other special beans in specific context subclasses.
-				onRefresh();
+				onRefresh();//tomcat在这里进行初始化
 
 				// Check for listener beans and register them.
 				registerListeners();

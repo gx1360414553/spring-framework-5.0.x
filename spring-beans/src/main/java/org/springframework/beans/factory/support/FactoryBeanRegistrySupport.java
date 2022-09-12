@@ -132,7 +132,7 @@ public abstract class FactoryBeanRegistrySupport extends DefaultSingletonBeanReg
 			}
 		}
 		else {
-			Object object = doGetObjectFromFactoryBean(factory, beanName);
+			Object object = doGetObjectFromFactoryBean(factory, beanName);//调用getObject
 			if (shouldPostProcess) {
 				try {
 					object = postProcessObjectFromFactoryBean(object, beanName);

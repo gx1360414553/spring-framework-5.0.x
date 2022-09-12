@@ -502,7 +502,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		initMultipartResolver(context); //初始化文件解析器
 		initLocaleResolver(context);
 		initThemeResolver(context);
-		initHandlerMappings(context);
+		initHandlerMappings(context);//初始化HandlerMapping
 		initHandlerAdapters(context);
 		initHandlerExceptionResolvers(context);
 		initRequestToViewNameTranslator(context);
@@ -967,7 +967,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			Exception dispatchException = null;
 
 			try {
-				processedRequest = checkMultipart(request);
+				processedRequest = checkMultipart(request); //解析文件请求
 				multipartRequestParsed = (processedRequest != request);
 
 				// Determine handler for the current request.
@@ -1007,7 +1007,7 @@ public class DispatcherServlet extends FrameworkServlet {
 				}
 
 				applyDefaultViewName(processedRequest, mv);
-				mappedHandler.applyPostHandle(processedRequest, response, mv);
+				mappedHandler.applyPostHandle(processedRequest, response, mv);//后置拦截器处理
 			}
 			catch (Exception ex) {
 				dispatchException = ex;
@@ -1311,7 +1311,7 @@ public class DispatcherServlet extends FrameworkServlet {
 		String viewName = mv.getViewName();
 		if (viewName != null) {
 			// We need to resolve the view name.
-			view = resolveViewName(viewName, mv.getModelInternal(), locale, request);
+			view = resolveViewName(viewName, mv.getModelInternal(), locale, request);//视图解析
 			if (view == null) {
 				throw new ServletException("Could not resolve view with name '" + mv.getViewName() +
 						"' in servlet with name '" + getServletName() + "'");
@@ -1334,7 +1334,7 @@ public class DispatcherServlet extends FrameworkServlet {
 			if (mv.getStatus() != null) {
 				response.setStatus(mv.getStatus().value());
 			}
-			view.render(mv.getModelInternal(), request, response);
+			view.render(mv.getModelInternal(), request, response);//渲染
 		}
 		catch (Exception ex) {
 			if (logger.isDebugEnabled()) {

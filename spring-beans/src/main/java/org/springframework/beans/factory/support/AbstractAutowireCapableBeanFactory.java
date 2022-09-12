@@ -606,7 +606,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		if (earlySingletonExposure) {
 			Object earlySingletonReference = getSingleton(beanName, false);
 			if (earlySingletonReference != null) {
-				if (exposedObject == bean) {
+				if (exposedObject == bean) {//等于 表示有发生循环引用
 					exposedObject = earlySingletonReference;
 				}
 				else if (!this.allowRawInjectionDespiteWrapping && hasDependentBean(beanName)) {
@@ -919,7 +919,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 			for (BeanPostProcessor bp : getBeanPostProcessors()) {
 				if (bp instanceof SmartInstantiationAwareBeanPostProcessor) {
 					SmartInstantiationAwareBeanPostProcessor ibp = (SmartInstantiationAwareBeanPostProcessor) bp;
-					//AbstractAutoProxyCreator#getEarlyBeanReference  单例bean生成代理aop
+					//AbstractAutoProxyCreator#getEarlyBeanReference  循环引用的bean提前生成代理aop
 					exposedObject = ibp.getEarlyBeanReference(exposedObject, beanName);
 				}
 			}
@@ -1136,7 +1136,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		/**
 		 * 从spring的原始注释可以知道这个是一个Shortcut，什么意思呢？
 		 * 当多次构建同一个 bean 时，可以使用这个Shortcut，
-		 * 也就是说不在需要次推断应该使用哪种方式构造bean
+		 * 也就是说不在需要每次推断应该使用哪种方式构造bean
 		 *  比如在多次构建同一个prototype类型的 bean 时，就可以走此处的shortcut
 		 * 这里的 resolved 和 mbd.constructorArgumentsResolved 将会在 bean 第一次实例
 		 * 化的过程中被设置，后面来证明
@@ -1743,7 +1743,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		try {
-			//执行bean的声明周期回调中的init方法
+			//执行bean的声明周期回调中的init方法 执行afterPropertiesSet方法
 			invokeInitMethods(beanName, wrappedBean, mbd);
 		}
 		catch (Throwable ex) {
@@ -1753,7 +1753,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 		if (mbd == null || !mbd.isSynthetic()) {
 			//第八次后置处理器
-			//执行后置处理器的after方法 原型aop在这里生成代理对象
+			//执行后置处理器的after方法 aop在这里生成代理对象
 			wrappedBean = applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
 		}
 
